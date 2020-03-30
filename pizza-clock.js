@@ -1,3 +1,4 @@
+@@ -1,82 +0,0 @@
 var pizzaPizza;
 function preload() {
 pizzaPizza = loadImage("pizzapizza.png");

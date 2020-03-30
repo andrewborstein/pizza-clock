@@ -18,8 +18,9 @@ function draw() {
   let hours = hour();
 
   // display the time in text and remind everyone that it is pizza time. 
+  const systemFontStack = '-apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif'
+  textFont(systemFontStack);
   textSize(32);
-  //textFont(clockFont);
   fill(255);
   textAlign(CENTER);
   stroke(0);

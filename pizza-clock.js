@@ -4,13 +4,17 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(700, 700);
+  let shortestSide = windowWidth < windowHeight ? windowWidth : windowHeight
+  createCanvas(shortestSide, shortestSide);
   angleMode(DEGREES);
   background(0);
 }
 
 function draw() {
-  image(pizzaPizza, 0, 0);
+  let shortestSide = windowWidth < windowHeight ? windowWidth : windowHeight
+  let halfShortestSide = shortestSide / 2
+
+  image(pizzaPizza, 0, 0, shortestSide, shortestSide);
 
   // create variables from the elements of time
   let secs = second();
@@ -18,7 +22,7 @@ function draw() {
   let hours = hour();
 
   // display the time in text and remind everyone that it is pizza time. 
-  const systemFontStack = '-apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif'
+  let systemFontStack = '-apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif'
   textFont(systemFontStack);
   textSize(32);
   fill(255);
@@ -50,32 +54,36 @@ function draw() {
 
   // rotate the hours hand
   push();
-  translate(350, 350);
+  translate(halfShortestSide, halfShortestSide);
   rotate(-90);
   rotate(hoursHand);
   stroke(0);
   strokeWeight(20);
-  line(0, 0, 150, 0);
+  line(0, 0, halfShortestSide - (halfShortestSide / 2), 0);
   pop();
 
   // rotate the minutes hand
   push();
-  translate(350, 350);
+  translate(halfShortestSide, halfShortestSide);
   rotate(-90);
   rotate(minsHand);
   stroke(0);
   strokeWeight(10);
-  line(0, 0, 200, 0);
+  line(0, 0, halfShortestSide - (halfShortestSide / 3), 0);
   pop();
 
   // rotate the seconds hand
   push();
-  translate(350, 350);
+  translate(halfShortestSide, halfShortestSide);
   rotate(-90);
   rotate(secsHand);
   stroke(255, 0, 0);
   strokeWeight(5);
-  line(0, 0, 200, 0);
+  line(0, 0, halfShortestSide - (halfShortestSide / 3), 0);
   pop();
 
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
